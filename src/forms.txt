@@ -1,0 +1,19 @@
+FORMULARIOS POR TEMPLATE
+La mayor parte de la configuración se realiza en el html.
+
+1) Importar formsModule en el módulo en el que se va a trabajar, en este caso el templateModule.
+
+-(ngSubmit): Sirve para realizar el submit del formulario, se coloca en el <form>.
+
+2) En el <form> creamos una referencia local (#) y le asignamos en ngForm. Lo mandamos como parametro en el ngSubmit. El ".value" es el valor que nos importa.
+
+3) Para poder enlazar los valores del los inputs con los del ".value" tenemos que colocar el "ngModel" (sin comillas) en cada input y asignarles un name a cada input también.
+
+VALIDACIONES DE FORMULARIOS POR TEMPLATE
+1) Podemos usar el "valid", el "pristine" y el "touched".
+2) Podemos usar un *ngIf y buscar el miFormulario.controls.nameAsignado?.invalid && (para el valid) o lo mismo con el .touched para el touched. Esto se podría hacer en el HTML pero eso lo haría muy difícil de leer, así que podemos hacer una función para ello.
+
+VIEWCHILD
+Para poder hacer la función de validación tenemos que usar el decorador @ViewChild() y mandarle la referencia local del fomulario, poner el ! ya que siempre va a mandar un valor, poner : nombrarla, y poner el tipado (ngForm)
+
+1) Al hacer esto de poner nuestra referencia en el componente ts, nos ahorramos el tener que mandar nuestra referencia local como parámetro en el ngSubmit. Y ahora solo nos manejamos con la referencia desde el component .ts
