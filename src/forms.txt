@@ -17,3 +17,41 @@ VIEWCHILD
 Para poder hacer la función de validación tenemos que usar el decorador @ViewChild() y mandarle la referencia local del fomulario, poner el ! ya que siempre va a mandar un valor, poner : nombrarla, y poner el tipado (ngForm)
 
 1) Al hacer esto de poner nuestra referencia en el componente ts, nos ahorramos el tener que mandar nuestra referencia local como parámetro en el ngSubmit. Y ahora solo nos manejamos con la referencia desde el component .ts
+
+2) Creamos la función y copiamos todo lo que teníamos antes en el html agregandole un ? a la referencia.
+
+
+DIRECTIVAS PERSONALIZADAS
+1) Crear una carpeta con el nombre directives y dentro de esta crear el componente-min.directive.ts.
+2) Declaramos la directiva en el módulo en el cual estamos trabajando.
+3) Como propiedad del input agregamos la directiva personalizada, le ponemos un nombre, en este caso "customMin" y le agregamos una propiedad entre [], en este caso [minimo].
+4) En el archivo de directivas, ponemos el decorador @Directive(), que tiene un selector al cual le colocamos el nombre de la directiva que pusimos en el input y el ngModel ambos entre []: '[customMin] [ngModel]'.
+5) Recibimos el valor a traves de un @Input() nombre!: number;
+6) Para realizar validaciones como el required o el minLength por ejemplo necesitamos implementar el Validator de @Angular/core
+7) Junto con los selectors tambien recibimos los providers que es un arreglo de objetos que son los siguientes para este caso:
+    providers: [{
+        provide: NG_VALIDATORS,
+        useExisting: CustomMinDirective,
+        multi: true 
+    }]
+8) Crear una función validate que recibe un control (input) de tipo FormControl.
+9) Creamos una constante y almacenamos el control.value
+10) Realizar un return con las validaciones, en este caso usamos un ternario:
+    return (constanteAlmacenada < this.minimo ) ? { 'customMin': true } : null;
+11) Ponerle required al input.
+
+
+RESETEAR FORMULARIO
+
+Gracias a que con el ViewChild creamos la referencia en el componente ts. solo debemos hacer lo siguiente:
+1) En la función guardar debemos usar el this.miFormulario.resetForm().
+
+VALORES POR DEFECTO EN UN FORMULARIO
+Para poner valores por defecto en un formulario tenemos que crear una propiedad que se llame valorInicial por ejemplo, y tiene que ser un objeto con las mismas propiedades que tenemos en el html.
+2) Luego a cada input en su ngModel lo encerramos en [] y le ponemos el valor igual a "valorInicial.precio"
+
+*) Si queremos que al postear el formulario de manera exitosa este quede con unos valores determinados, en el resetForm() mandamos un objeto con el nombre de las propiedades y les asignamos el valor que se quiera.
+
+
+FORMULARIOS DINÁMICOS
+AGREGAR ELEMENTOS DE FORMA DINÁMICA
