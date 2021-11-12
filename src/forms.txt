@@ -53,5 +53,26 @@ Para poner valores por defecto en un formulario tenemos que crear una propiedad 
 *) Si queremos que al postear el formulario de manera exitosa este quede con unos valores determinados, en el resetForm() mandamos un objeto con el nombre de las propiedades y les asignamos el valor que se quiera.
 
 
-FORMULARIOS DINÁMICOS
-AGREGAR ELEMENTOS DE FORMA DINÁMICA
+RADIOS, CHECKS, SWITCHES
+1) Crear las propiedades en el componente .ts.
+2) Enlazarlas a traves de un [(ngModel)]
+3) Ponerles un nombre.
+4) Ponerles un value.
+
+
+--------------------------------------------------------------------------------------------------------------------------------------
+FORMULARIOS REACTIVOS
+Para poder usar los formularios reactivos lo primero que tenemos que hacer es importar el ReactiveFormsModule de angular/forms en el módulo que vamos a utilizar.
+
+1) Creamos el miFormulario en el componente .ts y el tipado es FormGroup = new FormGroup.
+2) Este FormGroup recibe un objeto, en este objeto vamos a crear los atributos que queremos tener en el formulario. Mirar basicos.component.ts para ver un ejemplo con el 'nombre' = new FormControl('IPhone 13').
+3) Para enlazar esta propiedad con el input correspondiente, en el input tenemos una propiedad que se llama formControlName y le asignamos el valor del atributo del objeto ('nombre' en este ejemplo).
+
+FORM BUILDER
+Es un servicio que se usa para hacer más legible el código cuando creamos nuestro formulario. Se recomienda este mucho mas que el anterior.
+1) Inyectamos el FormBuilder en nuestro constructor
+2) Creamos el miFormulario de tipo FormGroup y lo igualamos al this.formBuilder.group({
+    nombre: ['Pablo'],
+    apellido: ['Romero'],
+    edad: [22]
+})
