@@ -1,11 +1,11 @@
 
-<h2>Template: Básicos</h2>
+<h2>Reactivos: Básicos</h2>
 <hr>
 
 <div class="row">
     <div class="col">
     
-        <form autocomplete="off" [formGroup]="miFormulario" >
+        <form (ngSubmit)="guardar()" autocomplete="off" [formGroup]="miFormulario" >
 
             <!-- Campo de producto -->
             <div class="mb-3 row">
@@ -18,7 +18,8 @@
                            formControlName="nombre"
                            placeholder="Nombre del producto" />
                            
-                    <span class="form-text text-danger" >
+                    <span class="form-text text-danger"
+                          *ngIf="campoEsValido('nombre')" >
                         Debe de ser de 3 letras
                     </span>
 
@@ -38,7 +39,8 @@
                            placeholder="Precio del producto"
                            />
 
-                     <span class="form-text text-danger">
+                     <span class="form-text text-danger"
+                           *ngIf="campoEsValido('precio')">
                         Debe de ser mayor o igual a 0
                      </span>
 
@@ -55,6 +57,11 @@
                            class="form-control"
                            formControlName="existencias"                                                                                               
                            placeholder="Existencias del producto"  />
+
+                    <span class="form-text text-danger"
+                           *ngIf="campoEsValido('existencias')">
+                            Las existencias deben de ser mayor o igual a 0
+                    </span>
 
                 </div>
             </div>

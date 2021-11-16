@@ -1,1 +1,95 @@
-<p>dinamicos works!</p>
+<h2>Reactivos: Dinámicos</h2>
+<hr>
+
+<form autocomplete="off" (ngSubmmit)="guardar()" [formGroup]="miFormulario">
+
+    <!-- NOMBRE -->
+    <div class="mb-3 row">
+
+        <label class="col-sm-3 col-form-label">Nombre</label>
+        <div class="col-sm-9">
+
+            <input 
+            class="form-control"
+            placeholder="Nombre"
+            type="text"
+            formControlName="nombre"
+            >
+
+            <span class="form-text text-danger"
+                  *ngIf="campoEsValido('nombre')" >
+            Este campo es obligatorio.
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <!-- AGREGAR FAVORITO -->
+    <div class="mb-3 row">
+
+        <label class="col-sm-3 col-form-label">Nombre</label>
+        <div class="col-sm-9">
+
+            <div class="input-group">
+                <input 
+                class="form-control"
+                placeholder="Agregar favorito"
+                type="text"
+                >
+                <button class="btn btn-outline-primary" type="button">
+                    Agregar
+                </button>
+            </div>    
+
+        </div>
+
+    </div>
+
+
+     <!-- LISTA DE FAVORITOS -->
+     <div class="mb-3 row">
+
+        <label class="col-sm-3 col-form-label">Favoritos</label>
+        <div class="col-sm-9">
+
+            <div class="input-group mb-1">
+
+                <input 
+                class="form-control"
+                type="text" >
+
+                <button class="btn btn-outline-danger"
+                        type="button"
+                        >
+                    Eliminar
+                </button>
+                
+            </div>
+            
+
+        </div> 
+
+    </div>
+
+
+    <!-- BOTÓN -->
+    <div class="row">
+
+        <div class="col-sm-12">
+           <button type="submit" class="btn btn-primary float-end" (click)="guardar()">
+               Guardar
+           </button>
+        </div>
+
+    </div>
+
+</form>
+
+
+<span>Valid</span>
+<pre>{{miFormulario.valid}}</pre>
+
+<span>Value</span>
+<pre>{{miFormulario.value | json}}</pre>

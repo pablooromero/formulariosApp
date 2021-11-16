@@ -76,3 +76,28 @@ Es un servicio que se usa para hacer más legible el código cuando creamos nues
     apellido: ['Romero'],
     edad: [22]
 })
+
+
+VALIDACIONES EN LOS FORMULARIOS REACTIVOS
+Las validaciones se realizan en el mismo array en el que definimos nuestras propiedades.
+1) Primero va el contenido del atributo, después las validaciones sincronas y luego las validaciones asincronas, ambas separadas por una coma.
+
+Validadores sincronos: Van luego del valor del atributo, si queremos usar varios tenemos que hacerlo en un array. Se usa el "Validators.".
+
+Para realizar las validaciones creamos una función y pasamos por parámetro el campo: string que requerimos y lo colocamos en la validación entre []. Luego en el html pasamos en el parámetro el nombre del input.
+
+RESETEAR EL FORMULARIO
+Para resetear el formulario usamos el .reset().
+Si queremos darle al fomrulario un valor inicial, en el ngOnInit usamos el .reset({valores}).
+
+ACTIVAR VALIDACIONES AL TOCAR EL BOTÓN
+Para hacer eso en el en la función que le asignamos al ngSubmit ponemos un if y hacemos lo siguiente:
+guardar() {
+
+    if (this.miFormulario.invalid) {
+      this.miFormulario.markAllAsTouched();
+      return;
+    }
+
+    this.miFormulario.reset(); //RESETEAMOS EL FORMULARIO
+  }
